@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { ArrowDown, Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import Link from "next/link";
@@ -92,15 +93,19 @@ export function Hero() {
 
         {/* CTA Buttons */}
         <div className="flex flex-wrap gap-3 justify-center pt-2">
-          <Button size="lg" asChild className="gap-2">
-            <a href="#projects">
-              View Projects
-              <ArrowDown className="w-4 h-4" />
-            </a>
-          </Button>
-          <Button size="lg" variant="outline" asChild>
-            <Link href="/resume">View Resume</Link>
-          </Button>
+          <a
+            href="#projects"
+            className={cn(buttonVariants({ size: "lg" }), "gap-2")}
+          >
+            View Projects
+            <ArrowDown className="w-4 h-4" />
+          </a>
+          <Link
+            href="/resume"
+            className={cn(buttonVariants({ size: "lg", variant: "outline" }))}
+          >
+            View Resume
+          </Link>
         </div>
 
         {/* Social links */}

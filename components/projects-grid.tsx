@@ -2,8 +2,10 @@
 
 import { projects } from "@/data/projects";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ExternalLink, Github } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { ExternalLink } from "lucide-react";
+import { GithubIcon } from "@/components/icons";
 import Link from "next/link";
 
 const miniApps = [
@@ -85,20 +87,32 @@ export function ProjectsGrid() {
 
               <div className="flex gap-2">
                 {project.liveUrl && (
-                  <Button variant="outline" size="sm" className="gap-1.5 h-8 text-xs" asChild>
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="w-3 h-3" />
-                      Live Demo
-                    </a>
-                  </Button>
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      buttonVariants({ variant: "outline", size: "sm" }),
+                      "gap-1.5 h-8 text-xs"
+                    )}
+                  >
+                    <ExternalLink className="w-3 h-3" />
+                    Live Demo
+                  </a>
                 )}
                 {project.githubUrl && (
-                  <Button variant="ghost" size="sm" className="gap-1.5 h-8 text-xs" asChild>
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                      <Github className="w-3 h-3" />
-                      GitHub
-                    </a>
-                  </Button>
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      buttonVariants({ variant: "ghost", size: "sm" }),
+                      "gap-1.5 h-8 text-xs"
+                    )}
+                  >
+                    <GithubIcon className="w-3 h-3" />
+                    GitHub
+                  </a>
                 )}
               </div>
             </div>

@@ -2,8 +2,9 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Mail, Phone, Github, Linkedin, MapPin, Printer } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/icons";
+import { PrintResumeButton } from "@/components/print-resume-button";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -28,10 +29,7 @@ export default function ResumePage() {
         <div className="max-w-4xl mx-auto">
           {/* Print button — hidden on print */}
           <div className="flex justify-end mb-6 print:hidden">
-            <Button variant="outline" className="gap-2" onClick={() => window.print()}>
-              <Printer className="w-4 h-4" />
-              Print / Save PDF
-            </Button>
+            <PrintResumeButton />
           </div>
 
           {/* Resume card */}
@@ -56,10 +54,10 @@ export default function ResumePage() {
                   <MapPin className="w-3.5 h-3.5" /> Accra, Ghana
                 </div>
                 <a href="https://github.com/EdwardGemadzi/projects" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-foreground transition-colors">
-                  <Github className="w-3.5 h-3.5" /> github.com/EdwardGemadzi
+                  <GithubIcon className="w-3.5 h-3.5" /> github.com/EdwardGemadzi
                 </a>
                 <a href="https://www.linkedin.com/in/edwardgemadzi/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-foreground transition-colors">
-                  <Linkedin className="w-3.5 h-3.5" /> linkedin.com/in/edwardgemadzi
+                  <LinkedinIcon className="w-3.5 h-3.5" /> linkedin.com/in/edwardgemadzi
                 </a>
               </div>
             </div>

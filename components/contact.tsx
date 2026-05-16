@@ -6,7 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { Mail, Phone, Github, Linkedin, Send } from "lucide-react";
+import { Mail, Phone, Send } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/icons";
 
 export function Contact() {
   const [loading, setLoading] = useState(false);
@@ -41,13 +42,13 @@ export function Contact() {
       href: "tel:+233548262096",
     },
     {
-      icon: <Github className="w-4 h-4" />,
+      icon: <GithubIcon className="w-4 h-4" />,
       label: "GitHub",
       value: "EdwardGemadzi",
       href: "https://github.com/EdwardGemadzi/projects",
     },
     {
-      icon: <Linkedin className="w-4 h-4" />,
+      icon: <LinkedinIcon className="w-4 h-4" />,
       label: "LinkedIn",
       value: "edwardgemadzi",
       href: "https://www.linkedin.com/in/edwardgemadzi/",
