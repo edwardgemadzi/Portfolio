@@ -37,9 +37,10 @@ export function Footer() {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
               {[
                 { name: 'Leave Manager', href: '/projects/leave-manager' },
-                { name: 'Deedly', href: '/projects/deedly' },
+                { name: 'EOTMG', href: '/projects/eotmg' },
                 { name: 'GroupFund', href: '/projects/groupfund' },
                 { name: 'APSU 16', href: '/projects/apsu16' },
+                { name: 'Aaron & Princess', href: '/projects/aaron-wedding' },
               ].map((l) => (
                 <li key={l.name}>
                   <Link href={l.href} style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.875rem', textDecoration: 'none' }}>
