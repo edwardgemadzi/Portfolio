@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { hireMeMailto } from '@/lib/contact'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
@@ -56,8 +57,8 @@ export function Header() {
               {item.name}
             </Link>
           ))}
-          <Link
-            href="/contact"
+          <a
+            href={hireMeMailto()}
             style={{
               padding: '9px 22px', borderRadius: '999px',
               background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)',
@@ -68,7 +69,7 @@ export function Header() {
             onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,255,255,0.1)'; (e.currentTarget as HTMLAnchorElement).style.color = '#fff' }}
           >
             Hire Me
-          </Link>
+          </a>
         </div>
 
         <button
@@ -103,12 +104,12 @@ export function Header() {
                   {item.name}
                 </Link>
               ))}
-              <Link
-                href="/contact"
+              <a
+                href={hireMeMailto()}
                 style={{ marginTop: 8, padding: '12px 16px', borderRadius: '10px', background: '#10B981', color: '#fff', fontWeight: 700, fontSize: '0.9375rem', textDecoration: 'none', textAlign: 'center' }}
               >
                 Hire Me
-              </Link>
+              </a>
             </div>
           </motion.div>
         )}

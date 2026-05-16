@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { hireMeMailto } from '@/lib/contact'
 import { motion } from 'framer-motion'
 import { CheckCircle2, Package, Users, ShieldCheck, ArrowRight } from 'lucide-react'
 
@@ -98,9 +99,9 @@ export default function Home() {
             </div>
           ))}
           <div style={{ padding: '20px 24px', display: 'flex', alignItems: 'center', borderLeft: '1px solid #E2E8F0' }}>
-            <Link href="/contact" style={{ display: 'inline-block', padding: '12px 22px', borderRadius: '12px', background: '#0A1128', color: '#fff', fontWeight: 600, fontSize: '0.875rem', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+            <a href={hireMeMailto('Project inquiry')} style={{ display: 'inline-block', padding: '12px 22px', borderRadius: '12px', background: '#0A1128', color: '#fff', fontWeight: 600, fontSize: '0.875rem', textDecoration: 'none', whiteSpace: 'nowrap' }}>
               Start a Project
-            </Link>
+            </a>
           </div>
         </motion.div>
       </div>

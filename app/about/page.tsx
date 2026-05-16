@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { MapPin, Mail, Phone, ExternalLink } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '@/components/icons'
 import Link from 'next/link'
+import { hireMeMailto } from '@/lib/contact'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -104,9 +105,9 @@ export default function About() {
               style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', borderRadius: '8px', background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.85)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 600 }}>
               <LinkedinIcon className="w-4 h-4" /> LinkedIn
             </a>
-            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', borderRadius: '8px', background: '#10B981', color: '#fff', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 700 }}>
+            <a href={hireMeMailto()} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', borderRadius: '8px', background: '#10B981', color: '#fff', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 700 }}>
               Hire Me <ExternalLink size={14} />
-            </Link>
+            </a>
           </motion.div>
         </div>
       </div>
@@ -183,7 +184,7 @@ export default function About() {
           <h3 style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif', fontWeight: 800, fontSize: '1.5rem', color: '#fff', margin: '0 0 12px' }}>Open to Remote Opportunities</h3>
           <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.9375rem', margin: '0 0 28px' }}>Available for full-time remote roles and freelance contracts worldwide.</p>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href="/contact" style={{ padding: '12px 28px', borderRadius: '10px', background: '#10B981', color: '#fff', textDecoration: 'none', fontWeight: 700, fontSize: '0.9375rem' }}>Get in Touch</Link>
+            <a href={hireMeMailto()} style={{ padding: '12px 28px', borderRadius: '10px', background: '#10B981', color: '#fff', textDecoration: 'none', fontWeight: 700, fontSize: '0.9375rem' }}>Get in Touch</a>
             <Link href="/projects" style={{ padding: '12px 28px', borderRadius: '10px', background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.85)', textDecoration: 'none', fontWeight: 600, fontSize: '0.9375rem' }}>View Projects</Link>
           </div>
         </motion.div>

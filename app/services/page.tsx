@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Link from 'next/link'
+import { hireMeMailto } from '@/lib/contact'
 import { Check } from 'lucide-react'
 
 const servicePackages = [
@@ -72,7 +72,7 @@ export default function Services() {
           <p style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: '0.7rem', color: '#10B981', letterSpacing: '0.08em', marginBottom: 12 }}>// ready to start</p>
           <h3 style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif', fontWeight: 800, fontSize: '1.5rem', color: '#fff', margin: '0 0 12px' }}>Have a project in mind?</h3>
           <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.9375rem', margin: '0 0 28px' }}>Share your goal and I will reply with a scoped plan and timeline.</p>
-          <Link href="/contact" style={{ display: 'inline-block', padding: '14px 32px', borderRadius: '10px', background: '#10B981', color: '#fff', textDecoration: 'none', fontWeight: 700, fontSize: '0.9375rem' }}>Get in Touch</Link>
+          <a href={hireMeMailto('Project inquiry')} style={{ display: 'inline-block', padding: '14px 32px', borderRadius: '10px', background: '#10B981', color: '#fff', textDecoration: 'none', fontWeight: 700, fontSize: '0.9375rem' }}>Get in Touch</a>
         </motion.div>
       </div>
     </div>
