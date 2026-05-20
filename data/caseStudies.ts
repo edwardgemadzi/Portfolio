@@ -49,7 +49,7 @@ export const caseStudies: CaseStudy[] = [
       'Comprehensive E2E test coverage with Playwright',
     ],
     stack: ['Next.js 15', 'TypeScript', 'MongoDB', 'JWT', 'Tailwind CSS', 'Playwright'],
-    links: { live: 'https://leave-managerone.vercel.app/', repo: null },
+    links: { live: 'https://leave-manager-one.vercel.app/', repo: null },
     status: 'launched',
   },
   {
@@ -87,7 +87,7 @@ export const caseStudies: CaseStudy[] = [
       'Party-perspective analysis (buyer vs seller) for nuanced contract review',
     ],
     stack: ['Next.js 14', 'TypeScript', 'Supabase', 'BullMQ', 'Gemini AI', 'BlockNote', 'Tailwind CSS'],
-    links: { live: 'https://mydeedly.com', repo: null },
+    links: { live: 'https://www.deedlyai.co', repo: null },
     status: 'contributing',
   },
   {

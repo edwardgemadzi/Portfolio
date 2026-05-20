@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { hireMeMailto } from '@/lib/contact'
 import { motion } from 'framer-motion'
 import { CheckCircle2, Package, Users, ShieldCheck, ArrowRight } from 'lucide-react'
@@ -62,7 +63,7 @@ export default function Home() {
         <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 80% 60% at 50% 50%, transparent 30%, #0A1128 100%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: 896, margin: '0 auto', padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
           <motion.p variants={fadeUp} initial="hidden" animate="visible" custom={0} className="mono-tag" style={{ color: '#10B981', marginBottom: 20 }}>
-            // freelance full-stack developer
+            {'// freelance full-stack developer'}
           </motion.p>
           <motion.h1 variants={fadeUp} initial="hidden" animate="visible" custom={1}
             style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif', fontWeight: 800, fontSize: 'clamp(2rem, 5vw, 3.5rem)', color: '#fff', lineHeight: 1.15, marginBottom: 24, letterSpacing: '-0.02em' }}>
@@ -135,17 +136,18 @@ export default function Home() {
       <section style={{ background: '#F8FAFC', padding: '100px 0' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} style={{ marginBottom: 48 }}>
-            <p className="mono-tag" style={{ marginBottom: 10 }}>// selected work</p>
+            <p className="mono-tag" style={{ marginBottom: 10 }}>{'// selected work'}</p>
             <h2 style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif', fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', color: '#0F172A' }}>Featured Work</h2>
           </motion.div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* Large featured card */}
             <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} whileHover={{ y: -4 }}
-              style={{ gridRow: 'span 2', background: '#fff', borderRadius: '20px', boxShadow: '0 10px 25px -5px rgba(10,17,40,0.08)', overflow: 'hidden', border: '1px solid #E2E8F0', display: 'flex', flexDirection: 'column' }}>
+              className="md:row-span-2"
+              style={{ background: '#fff', borderRadius: '20px', boxShadow: '0 10px 25px -5px rgba(10,17,40,0.08)', overflow: 'hidden', border: '1px solid #E2E8F0', display: 'flex', flexDirection: 'column' }}>
               <Link href={featuredProjects[0].href} style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%' }}>
                 <div style={{ position: 'relative', height: 320, flexShrink: 0 }}>
-                  <img src={featuredProjects[0].image} alt={featuredProjects[0].name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <Image src={featuredProjects[0].image} alt={featuredProjects[0].name} fill style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, 50vw" />
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,17,40,0.75) 0%, transparent 55%)' }} />
                   <div style={{ position: 'absolute', top: 16, right: 16, display: 'flex', alignItems: 'center', gap: 5, background: 'rgba(16,185,129,0.15)', border: '1px solid rgba(16,185,129,0.3)', borderRadius: '999px', padding: '4px 12px' }}>
                     <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#10B981', display: 'inline-block' }} />
@@ -173,7 +175,7 @@ export default function Home() {
                 style={{ background: '#fff', borderRadius: '20px', boxShadow: '0 10px 25px -5px rgba(10,17,40,0.08)', overflow: 'hidden', border: '1px solid #E2E8F0', display: 'flex', flexDirection: 'column' }}>
                 <Link href={project.href} style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%' }}>
                   <div style={{ position: 'relative', height: 160, flexShrink: 0 }}>
-                    <img src={project.image} alt={project.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <Image src={project.image} alt={project.name} fill style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, 50vw" />
                     <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,17,40,0.7) 0%, transparent 50%)' }} />
                     <div style={{ position: 'absolute', top: 12, right: 12, display: 'flex', alignItems: 'center', gap: 5, background: 'rgba(16,185,129,0.15)', border: '1px solid rgba(16,185,129,0.3)', borderRadius: '999px', padding: '3px 10px' }}>
                       <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#10B981', display: 'inline-block' }} />
@@ -209,7 +211,7 @@ export default function Home() {
       <section style={{ background: '#F8FAFC', padding: '100px 0' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} style={{ textAlign: 'center', marginBottom: 48 }}>
-            <p className="mono-tag" style={{ marginBottom: 10 }}>// technical capabilities</p>
+            <p className="mono-tag" style={{ marginBottom: 10 }}>{'// technical capabilities'}</p>
             <h2 style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif', fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', color: '#0F172A', marginBottom: 24 }}>My Technical Stack</h2>
             <div style={{ display: 'inline-flex', background: '#E2E8F0', borderRadius: '999px', padding: '4px', gap: 2 }}>
               {['Frontend', 'Full Stack', 'DevOps'].map((tab) => (
@@ -221,7 +223,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {strategyCards.map((card, i) => {
               const active = activeTab === ['Frontend', 'Full Stack', 'DevOps'][i]
               return (
