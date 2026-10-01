@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, ExternalLink } from 'lucide-react'
 import { getCaseStudyBySlug } from '@/data/caseStudies'
+import { GithubIcon } from '@/components/icons'
 
 const statusLabel: Record<string, string> = { launched: 'LAUNCHED', contributing: 'CONTRIBUTING', 'in-progress': 'IN PROGRESS' }
 const statusColor: Record<string, string> = { launched: '#10B981', contributing: '#6366F1', 'in-progress': '#F59E0B' }
@@ -64,12 +65,20 @@ export default function ProjectDetail() {
                 <span key={tech} style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: '0.68rem', padding: '5px 12px', borderRadius: '6px', background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.8)', fontWeight: 500 }}>{tech}</span>
               ))}
             </div>
-            {project.links.live && project.links.live !== '#' && (
-              <a href={project.links.live} target="_blank" rel="noopener noreferrer"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', borderRadius: '8px', background: '#10B981', color: '#fff', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 700 }}>
-                <ExternalLink size={15} /> Live Demo
-              </a>
-            )}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+              {project.links.live && project.links.live !== '#' && (
+                <a href={project.links.live} target="_blank" rel="noopener noreferrer"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', borderRadius: '8px', background: '#10B981', color: '#fff', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 700 }}>
+                  <ExternalLink size={15} /> Live Demo
+                </a>
+              )}
+              {project.links.repo && (
+                <a href={project.links.repo} target="_blank" rel="noopener noreferrer"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', borderRadius: '8px', background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 700 }}>
+                  <GithubIcon className="w-[15px] h-[15px]" /> Source Code
+                </a>
+              )}
+            </div>
           </motion.div>
         </div>
       </div>

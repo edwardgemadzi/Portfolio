@@ -23,6 +23,7 @@ export const caseStudies: CaseStudy[] = [
       'Separate leader/member flows with strict role-based access control',
       'Calendar and request views that reflect real shift scheduling constraints',
       'Accurate leave balance, carryover, and year-end projection visibility',
+      'Browser and server must agree on which days are working days for members in any timezone',
     ],
     architecture: {
       frontend: 'Next.js 15 App Router with role-aware dashboards, analytics, calendar, and profile pages',
@@ -47,9 +48,11 @@ export const caseStudies: CaseStudy[] = [
       'Delivered practical planning features beyond basic leave request forms',
       'Enabled transparent leave balance and carryover visibility per team member',
       'Comprehensive E2E test coverage with Playwright',
+      'Leave swap requests let members move approved leave to new dates, subject to leader approval',
+      'Fixed timezone date drift that blocked bookings for members east of UTC (Zambia, Angola) by storing calendar dates at UTC midnight, with a regression check across seven timezones',
     ],
     stack: ['Next.js 15', 'TypeScript', 'MongoDB', 'JWT', 'Tailwind CSS', 'Playwright'],
-    links: { live: 'https://leave-manager-one.vercel.app/', repo: null },
+    links: { live: 'https://leave-manager-one.vercel.app/', repo: 'https://github.com/edwardgemadzi/LeaveManager' },
     status: 'launched',
   },
   {
