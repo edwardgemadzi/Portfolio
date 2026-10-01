@@ -16,7 +16,7 @@ export const projects: Project[] = [
     description:
       "A full-featured leave management system with JWT authentication, team calendar, analytics dashboard, and role-based access control for organizations.",
     tech: ["Next.js 15", "TypeScript", "MongoDB", "JWT", "TailwindCSS"],
-    liveUrl: "https://leave-managerone.vercel.app/",
+    liveUrl: "https://leave-manager-one.vercel.app/",
     githubUrl: "https://github.com/EdwardGemadzi/projects",
     featured: true,
     category: "Full Stack",
