@@ -7,7 +7,7 @@ export const site = {
   location: 'Accra, Ghana',
   description:
     'Full-stack developer in Accra, Ghana. A background in banking controls, economics and customer operations, applied to secure web platforms: payments, encrypted personal data and audited admin tools.',
-  email: 'edwardgemadzi@rocketmail.com',
+  email: 'contact@edwardgemadzi.org',
   github: 'https://github.com/edwardgemadzi',
   linkedin: 'https://www.linkedin.com/in/edwardgemadzi/',
   // Public CV without the phone number; the full version is in ~/Portfolio/cv.
