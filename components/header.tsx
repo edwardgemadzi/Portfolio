@@ -1,128 +1,94 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { hireMeMailto } from '@/lib/contact'
 import { usePathname } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { useTheme } from 'next-themes'
+import { Menu, Moon, Sun, X } from 'lucide-react'
+import { mailto, nav, site } from '@/lib/site'
+import { cn } from '@/lib/utils'
 
-const NAV = [
-  { name: 'Projects', href: '/projects' },
-  { name: 'About', href: '/about' },
-  { name: 'Skills', href: '/skills' },
-  { name: 'Contact', href: '/contact' },
-]
+function ThemeToggle() {
+  const { resolvedTheme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- standard next-themes hydration guard
+  useEffect(() => setMounted(true), [])
+  const dark = mounted && resolvedTheme === 'dark'
+  return (
+    <button
+      type="button"
+      onClick={() => setTheme(dark ? 'light' : 'dark')}
+      aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}
+      className="grid size-10 place-items-center rounded-full text-ink-soft transition-colors hover:bg-sunken hover:text-ink"
+    >
+      {mounted ? (dark ? <Sun size={18} aria-hidden /> : <Moon size={18} aria-hidden />) : <span className="size-[18px]" />}
+    </button>
+  )
+}
 
 export function Header() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [open, setOpen] = useState(false)
   const pathname = usePathname()
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  useEffect(() => setMenuOpen(false), [pathname])
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`)
 
   return (
-    <header style={{
-      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-      background: '#0A1128',
-      borderBottom: scrolled ? '1px solid rgba(255,255,255,0.08)' : '1px solid transparent',
-      transition: 'border-color 0.3s',
-    }}>
-      <nav style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>
-          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#10B981', display: 'inline-block', boxShadow: '0 0 8px rgba(16,185,129,0.5)' }} />
-          <span style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif', fontWeight: 800, fontSize: '1.25rem', color: '#fff' }}>
-            Edward Gemadzi
-          </span>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-paper/85 backdrop-blur-md">
+      <nav aria-label="Main" className="container-page flex h-16 items-center justify-between gap-4">
+        <Link href="/" onClick={() => setOpen(false)} className="font-serif text-xl font-semibold tracking-tight text-ink">
+          {site.name}
         </Link>
 
-        <div style={{ display: 'flex', gap: 32, alignItems: 'center' }} className="nav-desktop">
-          {NAV.map((item) => (
+        <div className="hidden items-center gap-1 md:flex">
+          {nav.map((item) => (
             <Link
-              key={item.name}
+              key={item.href}
               href={item.href}
-              style={{
-                color: pathname === item.href ? '#fff' : 'rgba(255,255,255,0.7)',
-                fontWeight: 500, fontSize: '0.9375rem', textDecoration: 'none', transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = '#fff')}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = pathname === item.href ? '#fff' : 'rgba(255,255,255,0.7)')}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+              className={cn(
+                'rounded-full px-4 py-2 text-[0.9375rem] font-medium transition-colors hover:text-ink',
+                isActive(item.href) ? 'text-ink' : 'text-muted'
+              )}
             >
               {item.name}
             </Link>
           ))}
-          <a
-            href={hireMeMailto()}
-            style={{
-              padding: '9px 22px', borderRadius: '999px',
-              background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)',
-              color: '#fff', fontWeight: 600, fontSize: '0.875rem', textDecoration: 'none',
-              transition: 'all 0.2s',
-            }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = '#fff'; (e.currentTarget as HTMLAnchorElement).style.color = '#0A1128' }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,255,255,0.1)'; (e.currentTarget as HTMLAnchorElement).style.color = '#fff' }}
-          >
-            Hire Me
-          </a>
+          <ThemeToggle />
+          <a href={mailto()} className="btn btn-primary ml-2 !min-h-10 !py-2.5">Start a project</a>
         </div>
 
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="nav-mobile-btn"
-          style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#fff', padding: 4 }}
-        >
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="flex items-center gap-1 md:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            className="grid size-10 place-items-center rounded-full text-ink hover:bg-sunken"
+          >
+            {open ? <X size={20} aria-hidden /> : <Menu size={20} aria-hidden />}
+          </button>
+        </div>
       </nav>
 
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            style={{ overflow: 'hidden', background: '#0A1128', borderTop: '1px solid rgba(255,255,255,0.08)' }}
-          >
-            <div style={{ padding: '16px 24px', display: 'flex', flexDirection: 'column', gap: 4 }}>
-              {NAV.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  style={{
-                    padding: '12px 16px', borderRadius: '10px',
-                    color: pathname === item.href ? '#fff' : 'rgba(255,255,255,0.7)',
-                    background: pathname === item.href ? 'rgba(255,255,255,0.08)' : 'transparent',
-                    fontWeight: 500, fontSize: '0.9375rem', textDecoration: 'none',
-                  }}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <a
-                href={hireMeMailto()}
-                style={{ marginTop: 8, padding: '12px 16px', borderRadius: '10px', background: '#10B981', color: '#fff', fontWeight: 700, fontSize: '0.9375rem', textDecoration: 'none', textAlign: 'center' }}
+      {open && (
+        <div id="mobile-menu" className="border-t border-line bg-paper md:hidden">
+          <div className="container-page flex flex-col gap-1 py-4">
+            {nav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                className={cn('rounded-xl px-4 py-3 font-medium', isActive(item.href) ? 'bg-sunken text-ink' : 'text-ink-soft')}
               >
-                Hire Me
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <style>{`
-        .nav-desktop { display: flex; }
-        .nav-mobile-btn { display: none; }
-        @media (max-width: 768px) {
-          .nav-desktop { display: none !important; }
-          .nav-mobile-btn { display: block !important; }
-        }
-      `}</style>
+                {item.name}
+              </Link>
+            ))}
+            <a href={mailto()} className="btn btn-primary mt-2">Start a project</a>
+          </div>
+        </div>
+      )}
     </header>
   )
 }

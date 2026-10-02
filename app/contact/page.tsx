@@ -1,378 +1,104 @@
-"use client";
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import { ArrowRight, Mail } from 'lucide-react'
+import { Reveal } from '@/components/reveal'
+import { CopyEmail } from '@/components/copy-email'
+import { GithubIcon, LinkedinIcon } from '@/components/icons'
+import { mailto, site } from '@/lib/site'
+import { engagementSteps } from '@/lib/career'
 
-import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Copy, Check } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
-import { CONTACT_EMAIL, hireMeMailto } from "@/lib/contact";
-
-const contactInfo = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: CONTACT_EMAIL,
-    href: hireMeMailto(),
-  },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "+233 54 826 2096",
-    href: "tel:+233548262096",
-  },
-  {
-    icon: MapPin,
-    label: "Location",
-    value: "Accra, Ghana",
-    href: undefined,
-  },
-];
+export const metadata: Metadata = {
+  title: 'Contact',
+  description: `Email ${site.name} about a project or a role. Based in ${site.location}, open to remote work.`,
+}
 
 export default function ContactPage() {
-  const [copied, setCopied] = useState(false);
-
-  const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(CONTACT_EMAIL);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      /* clipboard unavailable */
-    }
-  };
-
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      style={{ minHeight: "calc(100vh - 64px)", background: "#F8FAFC", paddingBottom: 80 }}
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        style={{
-          background: "#0A1128",
-          padding: "56px 24px 64px",
-          textAlign: "center",
-        }}
-      >
-        <p
-          style={{
-            fontFamily: "var(--font-jetbrains-mono), monospace",
-            fontSize: "0.7rem",
-            color: "#10B981",
-            letterSpacing: "0.1em",
-            marginBottom: 16,
-          }}
-        >
-          // hire me
-        </p>
-        <h1
-          style={{
-            fontFamily: "var(--font-plus-jakarta), sans-serif",
-            fontWeight: 800,
-            fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
-            color: "#fff",
-            margin: "0 0 16px",
-          }}
-        >
-          Let&apos;s Work Together
-        </h1>
-        <p
-          style={{
-            color: "rgba(255,255,255,0.55)",
-            fontSize: "1rem",
-            maxWidth: 520,
-            margin: "0 auto",
-            lineHeight: 1.7,
-          }}
-        >
-          Send me an email from your inbox — no form to fill out here. I typically
-          reply within 24 hours.
-        </p>
-      </motion.div>
-
-      <div style={{ maxWidth: 640, margin: "0 auto", padding: "56px 24px 0" }}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          style={{
-            background: "#fff",
-            borderRadius: "16px",
-            border: "1px solid #E2E8F0",
-            padding: "40px 36px",
-            boxShadow: "0 4px 20px rgba(10,17,40,0.06)",
-            textAlign: "center",
-          }}
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: 0.15 }}
-            style={{
-              width: 56,
-              height: 56,
-              borderRadius: "14px",
-              background: "rgba(16,185,129,0.1)",
-              border: "1px solid rgba(16,185,129,0.2)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              margin: "0 auto 24px",
-            }}
-          >
-            <Mail size={26} color="#10B981" />
-          </motion.div>
-
-          <h2
-            style={{
-              fontFamily: "var(--font-plus-jakarta), sans-serif",
-              fontWeight: 800,
-              fontSize: "1.375rem",
-              color: "#0F172A",
-              margin: "0 0 12px",
-            }}
-          >
-            Email me directly
-          </h2>
-          <p
-            style={{
-              color: "#64748B",
-              fontSize: "0.9375rem",
-              lineHeight: 1.65,
-              margin: "0 0 28px",
-            }}
-          >
-            Tap below to open your email app with my address ready. Write your message
-            there — recruiters, clients, and collaborators welcome.
+    <>
+      <section className="bg-hero text-hero-ink">
+        <div className="container-page py-20 md:py-28">
+          <p className="eyebrow !text-hero-gold">Contact</p>
+          <h1 className="display mt-5 text-[clamp(2.4rem,6vw,4.4rem)]">Let&apos;s talk</h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-hero-muted">
+            Email is the best way to reach me. I reply by email.
           </p>
+        </div>
+      </section>
 
-          <a
-            href={hireMeMailto()}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 10,
-              padding: "14px 32px",
-              borderRadius: "10px",
-              background: "#10B981",
-              color: "#fff",
-              fontFamily: "var(--font-plus-jakarta), sans-serif",
-              fontWeight: 700,
-              fontSize: "0.9375rem",
-              textDecoration: "none",
-              marginBottom: 16,
-            }}
-          >
-            <Mail size={18} />
-            Send Email
-          </a>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 10,
-              flexWrap: "wrap",
-            }}
-          >
-            <span
-              style={{
-                fontFamily: "var(--font-jetbrains-mono), monospace",
-                fontSize: "0.8125rem",
-                color: "#0F172A",
-                fontWeight: 600,
-              }}
-            >
-              {CONTACT_EMAIL}
-            </span>
-            <button
-              type="button"
-              onClick={copyEmail}
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 6,
-                padding: "6px 12px",
-                borderRadius: "8px",
-                border: "1px solid #E2E8F0",
-                background: "#F8FAFC",
-                color: "#64748B",
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                cursor: "pointer",
-                fontFamily: "var(--font-plus-jakarta), sans-serif",
-              }}
-            >
-              {copied ? (
-                <>
-                  <Check size={14} color="#10B981" /> Copied
-                </>
-              ) : (
-                <>
-                  <Copy size={14} /> Copy
-                </>
-              )}
-            </button>
-          </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 20,
-            marginTop: 40,
-          }}
-        >
-          {contactInfo.map(({ icon: Icon, label, value, href }, i) => (
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, x: -16 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: 0.25 + i * 0.08 }}
-              style={{ display: "flex", alignItems: "center", gap: 16 }}
-            >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                style={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: "12px",
-                  background: "rgba(16,185,129,0.1)",
-                  border: "1px solid rgba(16,185,129,0.2)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexShrink: 0,
-                }}
-              >
-                <Icon size={18} color="#10B981" />
-              </motion.div>
-              <motion.div>
-                <p
-                  style={{
-                    fontFamily: "var(--font-jetbrains-mono), monospace",
-                    fontSize: "0.65rem",
-                    color: "#94A3B8",
-                    margin: "0 0 3px",
-                    letterSpacing: "0.06em",
-                  }}
-                >
-                  {label.toUpperCase()}
-                </p>
-                {href ? (
-                  <a
-                    href={href}
-                    style={{
-                      color: "#0F172A",
-                      fontWeight: 600,
-                      fontSize: "0.9rem",
-                      textDecoration: "none",
-                    }}
-                  >
-                    {value}
-                  </a>
-                ) : (
-                  <span
-                    style={{
-                      color: "#0F172A",
-                      fontWeight: 600,
-                      fontSize: "0.9rem",
-                    }}
-                  >
-                    {value}
-                  </span>
-                )}
-              </motion.div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.35 }}
-          style={{
-            marginTop: 40,
-            background: "#0A1128",
-            borderRadius: "14px",
-            padding: "24px",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              marginBottom: 10,
-            }}
-          >
-            <span
-              style={{
-                width: 7,
-                height: 7,
-                borderRadius: "50%",
-                background: "#10B981",
-                boxShadow: "0 0 6px rgba(16,185,129,0.6)",
-                display: "inline-block",
-              }}
-            />
-            <span
-              style={{
-                fontFamily: "var(--font-jetbrains-mono), monospace",
-                fontSize: "0.68rem",
-                color: "#10B981",
-                fontWeight: 600,
-                letterSpacing: "0.06em",
-              }}
-            >
-              AVAILABLE WORLDWIDE
-            </span>
+      <section aria-labelledby="email-heading" className="container-page py-16 md:py-24">
+        <Reveal>
+          <div className="card p-8 md:p-12">
+            <p className="eyebrow">Email</p>
+            <h2 id="email-heading" className="display mt-3 break-all text-2xl sm:text-3xl md:text-4xl">{site.email}</h2>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href={mailto()} className="btn btn-primary"><Mail size={16} aria-hidden /> Email me</a>
+              <CopyEmail email={site.email} />
+            </div>
           </div>
-          <p
-            style={{
-              color: "rgba(255,255,255,0.65)",
-              fontSize: "0.875rem",
-              margin: 0,
-              lineHeight: 1.65,
-            }}
-          >
-            Open to full-time remote roles and outcome-driven client engagements.
-            Based in Accra, Ghana.
-          </p>
-        </motion.div>
+        </Reveal>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          style={{
-            textAlign: "center",
-            marginTop: 32,
-            fontSize: "0.875rem",
-            color: "#94A3B8",
-          }}
-        >
-          Prefer browsing first?{" "}
-          <Link
-            href="/projects"
-            style={{ color: "#10B981", fontWeight: 600, textDecoration: "none" }}
-          >
-            View my projects
-          </Link>
-        </motion.p>
-      </div>
-    </motion.div>
-  );
+        <ul className="mt-8 flex flex-wrap gap-3">
+          <li>
+            <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
+              <LinkedinIcon className="size-4" /> LinkedIn
+            </a>
+          </li>
+          <li>
+            <a href={site.github} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
+              <GithubIcon className="size-4" /> GitHub
+            </a>
+          </li>
+          <li>
+            <a href={site.cv} download className="btn btn-outline">Download CV</a>
+          </li>
+        </ul>
+        <p className="mt-6 text-muted">Based in {site.location} · open to remote work</p>
+      </section>
+
+      <section id="next" aria-labelledby="next-heading" className="container-page pb-16 md:pb-24">
+        <p className="eyebrow">Working together</p>
+        <h2 id="next-heading" className="display mt-3 text-3xl md:text-4xl">What happens next</h2>
+        <ol className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {engagementSteps.map((step, i) => (
+            <li key={step.title} className="border-t-2 border-ink pt-5">
+              <p className="font-mono text-xs text-muted">Step {i + 1}</p>
+              <h3 className="mt-2 font-serif text-xl font-semibold tracking-tight">{step.title}</h3>
+              <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted">{step.body}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section aria-labelledby="audience-heading" className="border-t border-line bg-surface py-16 md:py-24">
+        <div className="container-page">
+          <h2 id="audience-heading" className="sr-only">Who I can help</h2>
+          <div className="grid gap-12 md:grid-cols-2">
+            <Reveal>
+              <div className="border-t-2 border-ink pt-6">
+                <h3 className="font-serif text-2xl font-semibold tracking-tight">For organisations</h3>
+                <p className="mt-4 leading-relaxed text-ink-soft">
+                  Tell me what you&apos;re building and I&apos;ll reply with a scoped plan and timeline. See what I&apos;ve already shipped first.
+                </p>
+                <Link href="/projects" className="link mt-4 inline-flex items-center gap-1.5">
+                  Browse projects <ArrowRight size={14} aria-hidden />
+                </Link>
+              </div>
+            </Reveal>
+            <Reveal delay={0.06}>
+              <div className="border-t-2 border-ink pt-6">
+                <h3 className="font-serif text-2xl font-semibold tracking-tight">For recruiters</h3>
+                <p className="mt-4 leading-relaxed text-ink-soft">
+                  My CV has the full record, and the career page walks through each role.
+                </p>
+                <p className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+                  <a href={site.cv} download className="link">Download CV</a>
+                  <Link href="/about#experience" className="link">See my experience</Link>
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+    </>
+  )
 }

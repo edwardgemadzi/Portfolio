@@ -1,0 +1,101 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif; background: #1e1b4b; color: #18181b; position: relative; -webkit-font-smoothing: antialiased; }
+  .bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 90% at 15% 50%, #312e81 0%, #1e1b4b 60%, #17153b 100%); }
+  .left { position: absolute; left: 60px; top: 0; bottom: 0; width: 440px; display: flex; flex-direction: column; justify-content: center; }
+  .eyebrow { color: #a5b4fc; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; margin-bottom: 18px; }
+  h1 { font-family: 'New York', 'Iowan Old Style', Georgia, serif; color: #fff; font-size: 66px; font-weight: 600; line-height: 1.02; letter-spacing: -0.02em; margin-bottom: 20px; }
+  .tag { color: rgba(255,255,255,0.78); font-size: 18px; line-height: 1.5; margin-bottom: 28px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill { color: #fff; font-size: 13px; border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; padding: 7px 14px; }
+
+  .app { position: absolute; left: 540px; top: 70px; width: 720px; height: 560px; background: #fafafa; border-radius: 14px 0 0 0; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.12); }
+  .nav { height: 48px; background: #fff; border-bottom: 1px solid #e4e4e7; display: flex; align-items: center; padding: 0 18px; gap: 18px; }
+  .logo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 13px; color: #18181b; margin-right: 10px; }
+  .logo i { width: 22px; height: 22px; border-radius: 7px; background: #4f46e5; display: grid; place-items: center; }
+  .navlink { font-size: 12px; color: #71717a; }
+  .navlink.on { color: #4f46e5; font-weight: 600; }
+  .main { padding: 20px 22px; }
+  .h { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+  .sub { font-size: 11.5px; color: #71717a; margin: 3px 0 16px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+  .card { background: #fff; border: 1px solid #e4e4e7; border-radius: 10px; padding: 12px 14px; }
+  .lbl { font-size: 9.5px; font-weight: 600; color: #71717a; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .val { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+  .note { font-size: 10px; color: #a1a1aa; margin-top: 3px; }
+  .bar { height: 5px; background: #eef2ff; border-radius: 99px; margin-top: 8px; overflow: hidden; }
+  .bar b { display: block; height: 100%; background: #4f46e5; border-radius: 99px; }
+  .row2 { display: grid; grid-template-columns: 1.15fr 1fr; gap: 10px; }
+  .ct { font-size: 12px; font-weight: 700; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+  .badge { font-size: 9.5px; font-weight: 600; padding: 2px 8px; border-radius: 99px; }
+  .pend { background: #fef3c7; color: #92400e; }
+  .ok { background: #dcfce7; color: #166534; }
+  .req { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid #f4f4f5; }
+  .av { width: 26px; height: 26px; border-radius: 50%; background: #e0e7ff; color: #4338ca; font-size: 10px; font-weight: 700; display: grid; place-items: center; flex-shrink: 0; }
+  .who { flex: 1; font-size: 11.5px; font-weight: 600; }
+  .who span { display: block; font-size: 10px; color: #71717a; font-weight: 400; margin-top: 1px; }
+  .btns { display: flex; gap: 5px; }
+  .btn { font-size: 10px; font-weight: 600; padding: 4px 9px; border-radius: 6px; }
+  .approve { background: #4f46e5; color: #fff; }
+  .deny { border: 1px solid #e4e4e7; color: #52525b; }
+  .cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+  .dow { font-size: 9px; color: #a1a1aa; text-align: center; font-weight: 600; }
+  .d { height: 26px; border-radius: 6px; background: #f4f4f5; font-size: 9.5px; color: #71717a; padding: 3px 4px; }
+  .d.l1 { background: #e0e7ff; color: #4338ca; }
+  .d.l2 { background: #a5b4fc; color: #1e1b4b; }
+  .d.full { background: #fee2e2; color: #991b1b; }
+  .d.wk { background: transparent; color: #d4d4d8; }
+  .legend { display: flex; gap: 12px; margin-top: 9px; font-size: 9.5px; color: #71717a; }
+  .legend i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+  .sample { position: absolute; left: 22px; bottom: 14px; font-size: 9.5px; color: #a1a1aa; }
+</style></head>
+<body>
+  <div class="bg"></div>
+  <div class="left">
+    <p class="eyebrow">CASE STUDY · LIVE IN PRODUCTION</p>
+    <h1>Leave Manager</h1>
+    <p class="tag">Team leave planning with role-based dashboards, shift-aware scheduling and real-time updates.</p>
+    <div class="pills"><span class="pill">Next.js 15</span><span class="pill">TypeScript</span><span class="pill">MongoDB</span><span class="pill">JWT</span><span class="pill">Playwright</span></div>
+  </div>
+
+  <div class="app">
+    <div class="nav">
+      <div class="logo"><i><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.4"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></i>Leave Manager</div>
+      <span class="navlink on">Dashboard</span><span class="navlink">Requests</span><span class="navlink">Calendar</span><span class="navlink">Members</span><span class="navlink">Analytics</span>
+    </div>
+    <div class="main">
+      <p class="h">Leader Dashboard</p>
+      <p class="sub">Your team at a glance · Operations team · 12 members</p>
+      <div class="stats">
+        <div class="card"><p class="lbl">Team days left</p><p class="val">148</p><p class="note">of 252 allocated</p></div>
+        <div class="card"><p class="lbl">Avg / member</p><p class="val">12.3</p><p class="note">days remaining</p></div>
+        <div class="card"><p class="lbl">Utilization</p><p class="val">41%</p><div class="bar"><b style="width:41%"></b></div></div>
+        <div class="card"><p class="lbl">At risk</p><p class="val">2</p><p class="note">may lose carryover</p></div>
+      </div>
+      <div class="row2">
+        <div class="card">
+          <p class="ct">Approvals queue <span class="badge pend">3 pending</span></p>
+          <div class="req"><span class="av">AM</span><p class="who">Ama Mensah<span>14–18 Oct · 5 days · Shift A</span></p><div class="btns"><span class="btn deny">Deny</span><span class="btn approve">Approve</span></div></div>
+          <div class="req"><span class="av">KO</span><p class="who">Kojo Owusu<span>21–22 Oct · 2 days · Shift B</span></p><div class="btns"><span class="btn deny">Deny</span><span class="btn approve">Approve</span></div></div>
+          <div class="req"><span class="av">EB</span><p class="who">Efua Boateng<span>3–7 Nov · 5 days · Shift A</span></p><div class="btns"><span class="btn deny">Deny</span><span class="btn approve">Approve</span></div></div>
+          <div class="req"><span class="av">YA</span><p class="who">Yaw Asante<span>6–10 Oct · 5 days</span></p><span class="badge ok">Approved</span></div>
+        </div>
+        <div class="card">
+          <p class="ct">October · team calendar</p>
+          <div class="cal">
+            <span class="dow">M</span><span class="dow">T</span><span class="dow">W</span><span class="dow">T</span><span class="dow">F</span><span class="dow">S</span><span class="dow">S</span>
+            <span class="d l1">6</span><span class="d l1">7</span><span class="d l1">8</span><span class="d l1">9</span><span class="d l1">10</span><span class="d wk">11</span><span class="d wk">12</span>
+            <span class="d">13</span><span class="d l1">14</span><span class="d l2">15</span><span class="d full">16</span><span class="d l2">17</span><span class="d wk">18</span><span class="d wk">19</span>
+            <span class="d">20</span><span class="d l1">21</span><span class="d l1">22</span><span class="d">23</span><span class="d">24</span><span class="d wk">25</span><span class="d wk">26</span>
+            <span class="d">27</span><span class="d">28</span><span class="d l1">29</span><span class="d l1">30</span><span class="d">31</span><span class="d wk"></span><span class="d wk"></span>
+          </div>
+          <div class="legend"><span><i style="background:#e0e7ff"></i>1 off</span><span><i style="background:#a5b4fc"></i>2 off</span><span><i style="background:#fee2e2"></i>Shift limit</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="sample">Sample data</p>
+  </div>
+</body></html>

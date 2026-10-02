@@ -1,34 +1,113 @@
 @import "tailwindcss";
 
+/* Dark mode follows the `.dark` class set by next-themes. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Design tokens ──────────────────────────────────────────────
+   Editorial palette shared with the PDF brochures: warm paper,
+   near-black ink, a deep green accent and a gold highlight.
+   Every text/background pair below meets WCAG AA (4.5:1). */
+:root {
+  --paper: #faf8f4;
+  --surface: #ffffff;
+  --sunken: #f2efe8;
+  --ink: #16181d;
+  --ink-soft: #3d424d;
+  --muted: #5a606c;
+  --line: #e4e0d6;
+  --accent: #0b6b4f;
+  --accent-ink: #ffffff;
+  --accent-soft: #e5f1eb;
+  --gold: #8a5a00;
+  --hero: #0e2a20;
+  --hero-ink: #f4f1e8;
+  --hero-muted: #b9c4bd;
+  --hero-gold: #e3b35a;
+  --hero-live: #5fd0a2;
+}
+
+.dark {
+  --paper: #0f1113;
+  --surface: #171a1d;
+  --sunken: #1d2124;
+  --ink: #f1efe9;
+  --ink-soft: #cfd2d6;
+  --muted: #a3a9b1;
+  --line: #2b3034;
+  --accent: #5fd0a2;
+  --accent-ink: #062016;
+  --accent-soft: #15352a;
+  --gold: #e3b35a;
+  --hero: #0b1f18;
+  --hero-ink: #f4f1e8;
+  --hero-muted: #b9c4bd;
+  --hero-gold: #e3b35a;
+  --hero-live: #5fd0a2;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-sunken: var(--sunken);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-gold: var(--gold);
+  --color-hero: var(--hero);
+  --color-hero-ink: var(--hero-ink);
+  --color-hero-muted: var(--hero-muted);
+  --color-hero-gold: var(--hero-gold);
+  --color-hero-live: var(--hero-live);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-source-serif), ui-serif, Georgia, serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
 @layer base {
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #F8FAFC; color: #0F172A; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: var(--accent-soft); color: var(--ink); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  [id] { scroll-margin-top: 88px; }
 }
 
-.mono-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  color: #64748B;
-  display: block;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
 
-.status-dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #10B981;
-  box-shadow: 0 0 0 3px rgba(16,185,129,0.2);
-  animation: pulse 2s infinite;
-}
+@layer components {
+  .container-page { width: 100%; max-width: 1180px; margin-inline: auto; padding-inline: 20px; }
+  @media (min-width: 768px) { .container-page { padding-inline: 32px; } }
 
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 3px rgba(16,185,129,0.2); }
-  50% { box-shadow: 0 0 0 6px rgba(16,185,129,0.1); }
-}
+  .eyebrow { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+  .display { font-family: var(--font-serif); font-weight: 600; letter-spacing: -0.02em; line-height: 1.05; }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 44px; padding: 0.7rem 1.25rem; border-radius: 999px; font-weight: 600; font-size: 0.9375rem; line-height: 1; text-decoration: none; transition: background-color 0.15s, color 0.15s, border-color 0.15s, transform 0.15s; }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { filter: brightness(1.08); }
+  .btn-outline { border: 1px solid var(--line); color: var(--ink); background: var(--surface); }
+  .btn-outline:hover { border-color: var(--ink); }
+  .btn-hero-primary { background: var(--hero-ink); color: var(--hero); }
+  .btn-hero-primary:hover { background: #ffffff; }
+  .btn-on-hero { border: 1px solid rgb(255 255 255 / 0.35); color: var(--hero-ink); }
+  .btn-on-hero:hover { background: rgb(255 255 255 / 0.1); }
+
+  .link { color: var(--accent); font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .link:hover { text-decoration-thickness: 2px; }
+
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; }
+  .chip { display: inline-flex; align-items: center; font-family: var(--font-mono); font-size: 0.7rem; padding: 0.3rem 0.6rem; border-radius: 6px; background: var(--sunken); color: var(--ink-soft); }
 }

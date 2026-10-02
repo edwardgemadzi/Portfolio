@@ -1,194 +1,136 @@
-'use client'
-
-import { motion } from 'framer-motion'
-import { MapPin, Mail, Phone, ExternalLink } from 'lucide-react'
-import { GithubIcon, LinkedinIcon } from '@/components/icons'
+import type { Metadata } from 'next'
 import Link from 'next/link'
-import { hireMeMailto } from '@/lib/contact'
+import { ArrowRight } from 'lucide-react'
+import { Reveal } from '@/components/reveal'
+import { GithubIcon, LinkedinIcon } from '@/components/icons'
+import { education, experience, skillGroups, strengths } from '@/lib/career'
+import { mailto, site } from '@/lib/site'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.1 } }),
+export const metadata: Metadata = {
+  title: 'About',
+  description:
+    'Career in banking internal control at Ecobank, customer operations at Yango and an economics degree, now building secure web platforms as a freelance developer.',
 }
 
-const experience = [
-  {
-    role: 'Freelance Full Stack Developer',
-    company: 'Independent',
-    period: 'Jan 2025 – Present',
-    type: 'Remote',
-    bullets: [
-      'Designing and building production web applications end to end — database, API, auth, and UI.',
-      'Leave Manager: team leave planning platform with role-based dashboards, SSE real-time updates, and 60+ active users.',
-      'APSU 16 (apsu16.com): alumni member portal with OTP auth, Paystack integration, PWA support, and 200+ verified members.',
-      'GroupFund: double-entry accounting platform with segregation of duties, Paystack webhooks, and automated monthly finance reports.',
-    ],
-  },
-  {
-    role: 'Full Stack Developer (Intern)',
-    company: 'Edureka',
-    period: 'Jan 2025 – Jul 2025',
-    type: 'Remote',
-    bullets: [
-      'Built and deployed a Job Recruitment Platform with secure multi-role auth, profile management, and job posting features.',
-      'Developed a Weather App using MERN stack with WeatherAPI and MapTiler integrations and Globe.gl visualisation.',
-      'Created a Netflix homepage clone for responsive UI/UX practice.',
-      'Implemented secure backend authentication with bcrypt and HTTP-only cookies.',
-      'Managed deployment workflows, API integrations, and GitHub project repositories.',
-    ],
-  },
-  {
-    role: 'Support Specialist',
-    company: 'Yango Ghana LTD',
-    period: 'Aug 2022 – Present',
-    type: 'Accra, Ghana',
-    bullets: [
-      'Resolved over 40,000 customer support inquiries with a 93% satisfaction rate.',
-      'Trained new staff members and provided continuous support across day and night shifts.',
-      'Assisted in data entry for AI-based customer response systems, improving accuracy and efficiency.',
-      'Improved operational efficiency through effective communication and issue resolution.',
-    ],
-  },
-  {
-    role: 'Internal Controller',
-    company: 'Ecobank Ghana LTD',
-    period: 'Oct 2020 – Dec 2021',
-    type: 'Accra, Ghana',
-    bullets: [
-      'Monitored system access across multiple regions and resolved daily operational issues.',
-      'Led a 3-month document retrieval project improving compliance and data management.',
-      'Conducted branch audits to ensure adherence to internal control standards.',
-      'Trained employees on internal control practices and conducted system checks to maintain organisational security.',
-    ],
-  },
-]
-
-const education = { degree: 'Bachelor of Arts — Economics and Philosophy', institution: 'University of Ghana, Legon', graduated: '2020' }
-
-const skills = [
-  { label: 'Frontend', items: ['React.js', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Bootstrap', 'HTML/CSS', 'Framer Motion'] },
-  { label: 'Backend', items: ['Node.js', 'Express.js', 'RESTful APIs', 'JWT Auth', 'bcrypt', 'RBAC', 'SSE'] },
-  { label: 'Database', items: ['MongoDB', 'Supabase (PostgreSQL)', 'Neon Postgres', 'Prisma', 'Data Modelling'] },
-  { label: 'Tools', items: ['Git & GitHub', 'Postman', 'VS Code', 'Vite', 'Vercel', 'Playwright', 'Anaconda'] },
-  { label: 'Other', items: ['Microsoft Power Automate', 'FLEXCUBE', 'SWIFT', 'Western Union', 'IBPS'] },
-]
-
-export default function About() {
+export default function AboutPage() {
   return (
-    <div style={{ background: '#F8FAFC', minHeight: '100vh' }}>
-      <div style={{ background: '#0A1128', padding: '72px 24px' }}>
-        <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
-          <motion.p variants={fadeUp} initial="hidden" animate="visible" custom={0} style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: '0.7rem', color: '#10B981', letterSpacing: '0.08em', marginBottom: 16 }}>
-            // freelance full-stack developer
-          </motion.p>
-          <motion.h1 variants={fadeUp} initial="hidden" animate="visible" custom={1}
-            style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif', fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#fff', margin: '0 0 20px', letterSpacing: '-0.02em' }}>
-            Edward Ephraim Gemadzi
-          </motion.h1>
-          <motion.p variants={fadeUp} initial="hidden" animate="visible" custom={2}
-            style={{ color: 'rgba(255,255,255,0.65)', fontSize: '1.0625rem', maxWidth: 640, margin: '0 auto 32px', lineHeight: 1.75 }}>
-            Freelance Full Stack Developer since January 2025 — I own the entire product: database schema, API design, auth systems, and the UI. I&apos;ve shipped live applications in Next.js, Node.js, and React with real users, real security requirements, and real deadlines. Based in Accra, open to remote worldwide.
-          </motion.p>
-          <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={3} style={{ display: 'flex', flexWrap: 'wrap', gap: 20, justifyContent: 'center' }}>
-            {[{ icon: MapPin, text: 'Accra, Ghana' }, { icon: Mail, text: 'edwardgemadzi@rocketmail.com', href: 'mailto:edwardgemadzi@rocketmail.com' }, { icon: Phone, text: '(+233) 54 826 2096', href: 'tel:+233548262096' }].map(({ icon: Icon, text, href }) => (
-              <a key={text} href={href || '#'} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: '0.875rem' }}>
-                <Icon size={15} color="#10B981" /> {text}
-              </a>
-            ))}
-          </motion.div>
-          <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={4} style={{ display: 'flex', gap: 12, justifyContent: 'center', marginTop: 24 }}>
-            <a href="https://github.com/EdwardGemadzi/projects" target="_blank" rel="noopener noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', borderRadius: '8px', background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.85)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 600 }}>
-              <GithubIcon className="w-4 h-4" /> GitHub
+    <>
+      {/* ── HERO ── */}
+      <section className="bg-hero text-hero-ink">
+        <div className="container-page py-20 md:py-28">
+          <p className="eyebrow !text-hero-gold">{site.role} · {site.location}</p>
+          <h1 className="display mt-5 text-[clamp(2.4rem,6vw,4.4rem)]">{site.fullName}</h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-hero-muted">
+            I started in banking internal control at Ecobank Ghana, moved into customer operations at Yango, and hold a degree in economics.
+            Today I build secure web platforms as a freelance developer, and I am Vice Convenor of APSU &apos;16.
+          </p>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <a href={mailto()} className="btn btn-hero-primary">Start a project <ArrowRight size={16} aria-hidden /></a>
+            <a href={site.cv} download className="btn btn-on-hero">Download CV</a>
+            <a href={site.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)" className="btn btn-on-hero">
+              <GithubIcon className="size-4" /> GitHub
             </a>
-            <a href="https://www.linkedin.com/in/edwardgemadzi/" target="_blank" rel="noopener noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', borderRadius: '8px', background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.85)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 600 }}>
-              <LinkedinIcon className="w-4 h-4" /> LinkedIn
+            <a href={site.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)" className="btn btn-on-hero">
+              <LinkedinIcon className="size-4" /> LinkedIn
             </a>
-            <a href={hireMeMailto()} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', borderRadius: '8px', background: '#10B981', color: '#fff', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 700 }}>
-              Hire Me <ExternalLink size={14} />
-            </a>
-          </motion.div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: '64px 24px' }}>
-        {/* Experience */}
-        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-          <p style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: '0.7rem', color: '#10B981', letterSpacing: '0.08em', marginBottom: 10 }}>// work history</p>
-          <h2 style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif', fontWeight: 800, fontSize: '1.75rem', color: '#0F172A', margin: '0 0 36px' }}>Professional Experience</h2>
-        </motion.div>
+      {/* ── STRENGTHS ── */}
+      <section id="strengths" aria-labelledby="strengths-heading" className="border-b border-line bg-surface py-20 md:py-28">
+        <div className="container-page">
+          <p className="eyebrow">What I bring</p>
+          <h2 id="strengths-heading" className="display mt-3 max-w-3xl text-4xl md:text-5xl">A whole career behind the code</h2>
+          <div className="mt-14 grid gap-x-12 gap-y-14 md:grid-cols-2">
+            {strengths.map((s, i) => (
+              <Reveal key={s.title} delay={(i % 2) * 0.06}>
+                <article className="border-t-2 border-ink pt-6">
+                  <p className="font-mono text-xs text-muted">0{i + 1}</p>
+                  <h3 className="mt-2 font-serif text-2xl font-semibold tracking-tight">{s.title}</h3>
+                  <p className="mt-4 leading-relaxed text-ink-soft">{s.background}</p>
+                  <p className="mt-3 leading-relaxed text-ink-soft">{s.inPractice}</p>
+                  <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+                    <span className="text-muted">See:</span>
+                    {s.links.map((l) => <Link key={l.href} href={l.href} className="link">{l.label}</Link>)}
+                  </p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        <div style={{ position: 'relative', paddingLeft: 32 }}>
-          <div style={{ position: 'absolute', left: 0, top: 8, bottom: 8, width: 2, background: '#E2E8F0' }} />
-          {experience.map((job, i) => (
-            <motion.div key={job.company + job.role} initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.1 }}
-              style={{ position: 'relative', marginBottom: i < experience.length - 1 ? 40 : 0 }}>
-              <div style={{ position: 'absolute', left: -39, top: 6, width: 14, height: 14, borderRadius: '50%', background: '#10B981', border: '2px solid #fff', boxShadow: '0 0 0 3px rgba(16,185,129,0.2)' }} />
-              <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid #E2E8F0', padding: '24px 28px', boxShadow: '0 4px 16px rgba(10,17,40,0.05)' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8, marginBottom: 4 }}>
-                  <h3 style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif', fontWeight: 700, fontSize: '1rem', color: '#0F172A', margin: 0 }}>{job.role}</h3>
-                  <span style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: '0.7rem', color: '#64748B', background: '#F8FAFC', border: '1px solid #E2E8F0', padding: '3px 10px', borderRadius: '999px' }}>{job.period}</span>
+      {/* ── EXPERIENCE ── */}
+      <section id="experience" aria-labelledby="experience-heading" className="container-page py-20 md:py-28">
+        <p className="eyebrow">Experience</p>
+        <h2 id="experience-heading" className="display mt-3 text-4xl md:text-5xl">From the bank floor to production systems</h2>
+        <ol className="mt-12 divide-y divide-line border-y border-line">
+          {experience.map((r) => (
+            <li key={r.title + r.org} className="grid gap-2 py-8 md:grid-cols-[200px_1fr] md:gap-10">
+              <p className="font-mono text-xs leading-6 text-muted">{r.period}</p>
+              <div>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                  <h3 className="font-serif text-2xl font-semibold tracking-tight">{r.title}</h3>
+                  <span className="chip">{r.kind}</span>
                 </div>
-                <p style={{ color: '#10B981', fontSize: '0.875rem', fontWeight: 600, margin: '0 0 14px', display: 'flex', alignItems: 'center', gap: 6 }}>
-                  {job.company} <span style={{ color: '#94A3B8', fontWeight: 400 }}>· {job.type}</span>
-                </p>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  {job.bullets.map((b) => (
-                    <li key={b} style={{ display: 'flex', gap: 10, fontSize: '0.875rem', color: '#374151', lineHeight: 1.6 }}>
-                      <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#10B981', flexShrink: 0, marginTop: 7 }} />
-                      {b}
-                    </li>
-                  ))}
+                <p className="mt-1 text-ink-soft">{r.org} · {r.place}</p>
+                <p className="mt-4 leading-relaxed text-ink-soft">{r.summary}</p>
+                <ul className="mt-4 list-disc space-y-2 pl-5 text-[0.9375rem] leading-relaxed text-muted marker:text-gold">
+                  {r.points.map((pt) => <li key={pt}>{pt}</li>)}
                 </ul>
               </div>
-            </motion.div>
+            </li>
           ))}
-        </div>
+        </ol>
+      </section>
 
-        {/* Education */}
-        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} style={{ marginTop: 64 }}>
-          <p style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: '0.7rem', color: '#10B981', letterSpacing: '0.08em', marginBottom: 10 }}>// education</p>
-          <h2 style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif', fontWeight: 800, fontSize: '1.75rem', color: '#0F172A', margin: '0 0 28px' }}>Education</h2>
-          <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid #E2E8F0', padding: '28px', boxShadow: '0 4px 16px rgba(10,17,40,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
-            <div>
-              <h3 style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif', fontWeight: 700, fontSize: '1rem', color: '#0F172A', margin: '0 0 6px' }}>{education.degree}</h3>
-              <p style={{ color: '#64748B', fontSize: '0.875rem', margin: 0 }}>{education.institution}</p>
-            </div>
-            <span style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: '0.75rem', color: '#10B981', background: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.2)', padding: '6px 16px', borderRadius: '999px', fontWeight: 600 }}>
-              Graduated {education.graduated}
-            </span>
+      {/* ── EDUCATION ── */}
+      <section id="education" aria-labelledby="education-heading" className="container-page pb-20 md:pb-28">
+        <div className="card grid gap-6 p-8 md:p-12 lg:grid-cols-[1fr_2fr]">
+          <div>
+            <p className="eyebrow">Education</p>
+            <h2 id="education-heading" className="display mt-3 text-3xl md:text-4xl">Education</h2>
           </div>
-        </motion.div>
+          <div>
+            <p className="font-serif text-2xl font-semibold tracking-tight">{education.degree}</p>
+            <p className="mt-1 text-ink-soft">{education.institution}</p>
+            <p className="mt-1 font-mono text-xs text-muted">{education.year}</p>
+          </div>
+        </div>
+      </section>
 
-        {/* Skills */}
-        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} style={{ marginTop: 64 }}>
-          <p style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: '0.7rem', color: '#10B981', letterSpacing: '0.08em', marginBottom: 10 }}>// key skills</p>
-          <h2 style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif', fontWeight: 800, fontSize: '1.75rem', color: '#0F172A', margin: '0 0 28px' }}>Technical Skills</h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            {skills.map((group) => (
-              <div key={group.label} style={{ background: '#fff', borderRadius: '14px', border: '1px solid #E2E8F0', padding: '20px 24px', display: 'flex', gap: 20, alignItems: 'flex-start', flexWrap: 'wrap' }}>
-                <span style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: '0.7rem', color: '#64748B', letterSpacing: '0.06em', minWidth: 80, paddingTop: 4 }}>{group.label.toUpperCase()}</span>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, flex: 1 }}>
-                  {group.items.map((item) => (
-                    <span key={item} style={{ padding: '5px 14px', borderRadius: '999px', background: '#F1F5F9', color: '#334155', fontSize: '0.8125rem', fontWeight: 500 }}>{item}</span>
-                  ))}
-                </div>
+      {/* ── SKILLS ── */}
+      <section id="skills" aria-labelledby="skills-heading" className="border-y border-line bg-surface py-20 md:py-28">
+        <div className="container-page">
+          <p className="eyebrow">Skills</p>
+          <h2 id="skills-heading" className="display mt-3 text-4xl md:text-5xl">Tools and systems I work with</h2>
+          <div className="mt-12 grid gap-x-12 gap-y-10 md:grid-cols-2">
+            {skillGroups.map((g) => (
+              <div key={g.label}>
+                <h3 className="font-semibold text-ink">{g.label}</h3>
+                <ul className="mt-3 flex flex-wrap gap-2">
+                  {g.items.map((item) => <li key={item} className="chip">{item}</li>)}
+                </ul>
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
+      </section>
 
-        {/* CTA */}
-        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} style={{ marginTop: 64, background: '#0A1128', borderRadius: '20px', padding: '48px', textAlign: 'center' }}>
-          <h3 style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif', fontWeight: 800, fontSize: '1.5rem', color: '#fff', margin: '0 0 12px' }}>Open to Remote Opportunities</h3>
-          <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.9375rem', margin: '0 0 28px' }}>Available for full-time remote roles and freelance contracts worldwide.</p>
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href={hireMeMailto()} style={{ padding: '12px 28px', borderRadius: '10px', background: '#10B981', color: '#fff', textDecoration: 'none', fontWeight: 700, fontSize: '0.9375rem' }}>Get in Touch</a>
-            <Link href="/projects" style={{ padding: '12px 28px', borderRadius: '10px', background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.85)', textDecoration: 'none', fontWeight: 600, fontSize: '0.9375rem' }}>View Projects</Link>
+      {/* ── CTA ── */}
+      <section aria-labelledby="cta-heading" className="container-page py-20 md:py-28">
+        <div className="text-center">
+          <h2 id="cta-heading" className="display mx-auto max-w-3xl text-4xl md:text-5xl">Working on something that needs to be trusted?</h2>
+          <p className="mx-auto mt-5 max-w-xl text-lg text-muted">
+            Clients: email me what you&apos;re building. Recruiters: my CV has the full record.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <a href={mailto()} className="btn btn-primary">Email me <ArrowRight size={16} aria-hidden /></a>
+            <a href={site.cv} download className="btn btn-outline">Download CV</a>
           </div>
-        </motion.div>
-      </div>
-    </div>
+        </div>
+      </section>
+    </>
   )
 }

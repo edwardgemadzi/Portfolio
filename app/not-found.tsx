@@ -1,25 +1,17 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { Home, ArrowLeft } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 export default function NotFound() {
   return (
-    <div style={{ minHeight: '100vh', background: '#F8FAFC', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} style={{ textAlign: 'center', padding: 24 }}>
-        <p style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: '6rem', fontWeight: 800, color: '#E2E8F0', lineHeight: 1, marginBottom: 16 }}>404</p>
-        <h1 style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif', fontWeight: 800, fontSize: '1.75rem', color: '#0F172A', margin: '0 0 12px' }}>Page Not Found</h1>
-        <p style={{ color: '#64748B', fontSize: '0.9375rem', margin: '0 0 32px', maxWidth: 380 }}>The page you&apos;re looking for doesn&apos;t exist or has been moved.</p>
-        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', borderRadius: '10px', background: '#10B981', color: '#fff', textDecoration: 'none', fontWeight: 700, fontSize: '0.9375rem' }}>
-            <Home size={16} /> Go Home
-          </Link>
-          <button onClick={() => window.history.back()} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', borderRadius: '10px', border: '1px solid #E2E8F0', background: '#fff', color: '#374151', fontWeight: 600, fontSize: '0.9375rem', cursor: 'pointer' }}>
-            <ArrowLeft size={16} /> Go Back
-          </button>
-        </div>
-      </motion.div>
-    </div>
+    <section className="container-page py-24 text-center md:py-36">
+      <p className="eyebrow">Page not found</p>
+      <h1 className="display mt-4 text-[clamp(5rem,16vw,10rem)] text-ink">404</h1>
+      <p className="display mt-2 text-2xl md:text-3xl">This page doesn&apos;t exist</p>
+      <p className="mx-auto mt-4 max-w-md text-muted">The link may be old or mistyped. Try the home page or browse the projects.</p>
+      <div className="mt-8 flex flex-wrap justify-center gap-3">
+        <Link href="/" className="btn btn-primary">Home</Link>
+        <Link href="/projects" className="btn btn-outline">Projects <ArrowRight size={16} aria-hidden /></Link>
+      </div>
+    </section>
   )
 }

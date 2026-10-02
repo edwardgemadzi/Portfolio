@@ -1,0 +1,535 @@
+{
+  "generatedAt": "2026-10-02T17:09:05.901Z",
+  "portfolioPdf": "/brochures/Portfolio.pdf",
+  "projects": [
+    {
+      "slug": "groupfund",
+      "title": "GroupFund",
+      "subtitle": "Double-entry finance platform for an alumni association",
+      "client": "Alumni association, Ghana",
+      "year": "2026",
+      "summary": "A finance platform for an alumni association that collects dues, runs merchandise and event ventures, and answers to its members for every cedi. Payments arrive by bank transfer, mobile money and online checkout; the committee records and verifies them, and the system posts each one into a real double-entry general ledger. Treasurers get a trial balance, balance sheet and income statement that agree, instead of a spreadsheet nobody can reconcile.",
+      "role": "Design, full-stack build, accounting model, security, deployment",
+      "duration": "Apr – Sep 2026",
+      "problem": [
+        "Money arrived through four separate channels and was tracked in spreadsheets that never agreed with the bank statement.",
+        "The group collects money it does not own — merchandise paid for in advance, funds raised to pass on to another year group — and counting that as income overstated what the association actually had.",
+        "Committee roles change every year, so access had to be narrow and auditable rather than one shared login.",
+        "Members wanted to see where their contributions went without the committee hand-building reports."
+      ],
+      "solution": [
+        "Every payment posts a matching journal entry, so the cash view and the accounting view can never drift apart.",
+        "Money held on behalf of someone else posts to a liability account instead of income, and only becomes revenue when the obligation is discharged.",
+        "Nine committee roles with least-privilege access, segregation of duties on every payment, and an audit log on sensitive actions.",
+        "Reports generated from the ledger itself: trial balance, balance sheet, income statement, debtors and creditors ageing, budget versus actual."
+      ],
+      "features": [
+        {
+          "title": "Double-entry general ledger",
+          "body": "21 accounts across assets, liabilities, equity, income and expenses. Every payment, charge and payout posts a balanced journal entry."
+        },
+        {
+          "title": "Payment drives",
+          "body": "Seven kinds of collection — dues, pledges, merchandise, donations, event fees — each with its own target, deadline and posting rules."
+        },
+        {
+          "title": "Three-step payment approval",
+          "body": "Recorded, verified, then acknowledged by three different people. The same person cannot do two of the three."
+        },
+        {
+          "title": "Bank reconciliation",
+          "body": "Payment alerts are parsed from bank emails into a queue, matched to a member and drive, or dismissed with a reason."
+        },
+        {
+          "title": "Funds held in trust",
+          "body": "Money collected to pass on is held as a liability per venture, so the dashboard separates what the group owns from what it holds."
+        },
+        {
+          "title": "Member ledger and standings",
+          "body": "What each member has given and still owes, plus house and class leaderboards generated from the same figures as the reports."
+        },
+        {
+          "title": "Investor ventures",
+          "body": "Members can back a venture; capital and profit share are tracked separately and settled in cash or offset against what they owe."
+        },
+        {
+          "title": "Reports and exports",
+          "body": "Trial balance, balance sheet, income statement, ageing and cash-flow forecast, exportable to CSV, Excel and PDF."
+        },
+        {
+          "title": "Announcements",
+          "body": "Email and SMS to filtered member groups, with personal payment links generated per recipient."
+        }
+      ],
+      "security": [
+        "Nine committee roles enforced in every server procedure, not just the interface.",
+        "Recording, verifying and acknowledging a payment must be done by three different people.",
+        "Corrections are reversals, never edits: both sides stay on the record for audit.",
+        "Signed payment webhooks, verified inbound email, and Zod validation on every input.",
+        "73 automated tests on the accounting rules; type checks and a full build gate every release."
+      ],
+      "outcomes": [
+        {
+          "value": "21",
+          "label": "double-entry ledger accounts; reports agree to the bank"
+        },
+        {
+          "value": "73",
+          "label": "automated tests on the accounting rules"
+        },
+        {
+          "value": "9",
+          "label": "committee roles with least-privilege access"
+        },
+        {
+          "value": "144",
+          "label": "server procedures, each checking its own permissions"
+        }
+      ],
+      "stack": [
+        "Next.js 15",
+        "TypeScript",
+        "tRPC",
+        "Prisma",
+        "Neon Postgres",
+        "Clerk",
+        "Tailwind CSS",
+        "Zod",
+        "Recharts",
+        "Resend",
+        "Sentry",
+        "Vitest",
+        "Vercel"
+      ],
+      "accent": "#1a5c38",
+      "live": null,
+      "caseStudyPdf": "/brochures/groupfund-case-study.pdf",
+      "carouselPdf": "/brochures/groupfund-carousel.pdf",
+      "cover": "/brochures/groupfund-cover.png",
+      "thumbnail": "/brochures/groupfund-slide-01.png",
+      "gallery": [
+        {
+          "src": "/brochures/groupfund-dashboard.png",
+          "caption": "Treasurer dashboard: cash position, drives and the payments register (sample figures)",
+          "device": "desktop"
+        },
+        {
+          "src": "/brochures/groupfund-ledger.png",
+          "caption": "Trial balance in agreement, and funds held for others kept off income (sample figures)",
+          "device": "desktop"
+        },
+        {
+          "src": "/brochures/groupfund-design-system.png",
+          "caption": "Design system: one token source drives every screen",
+          "device": "desktop"
+        },
+        {
+          "src": "/brochures/groupfund-join.png",
+          "caption": "Member registration, reviewed by the committee before approval",
+          "device": "desktop"
+        },
+        {
+          "src": "/brochures/groupfund-join-phone.png",
+          "caption": "Registration on a phone",
+          "device": "phone"
+        }
+      ]
+    },
+    {
+      "slug": "pretty-in-pink",
+      "title": "Pretty in Pink Brunch 2026",
+      "subtitle": "Event registration, payments and QR check-in platform",
+      "client": "Pretty in Pink Brunch",
+      "year": "2026",
+      "summary": "A complete event platform for a charity brunch in Accra: guests register, pay a minimum contribution through Paystack, receive a personal QR pass by email, and are checked in at the door from a phone. Organisers run everything from a secure dashboard: guests, seating, VIP places, emails, donations and the site's own content.",
+      "role": "Design, full-stack build, security, deployment",
+      "duration": "Sept – Oct 2026",
+      "problem": [
+        "Every guest had to register and contribute at least GHS 200 before receiving an entry pass.",
+        "The organisers needed a paid VIP tier with a hard limit of 50 places and upgrades for existing guests.",
+        "Guests' personal data had to be protected properly, not just stored.",
+        "The organising team needed to change website text, seat guests and email guests without a developer."
+      ],
+      "solution": [
+        "A 4-step registration flow with Standard and VIP options, email checks and duplicate blocking.",
+        "Paystack payments checked on the server, with signed webhooks, so a pass is issued only after payment is confirmed.",
+        "Personal QR passes and a phone-friendly check-in screen that can also take payment at the door.",
+        "A role-based admin dashboard with two-step sign-in, live payment updates and a built-in content editor."
+      ],
+      "features": [
+        {
+          "title": "Registration and contribution gate",
+          "body": "4 steps with a GHS 200 minimum. Rejects disposable or mistyped emails and blocks duplicate sign-ups."
+        },
+        {
+          "title": "Paystack payments",
+          "body": "Amounts set on the server, every payment checked with Paystack, signed webhooks, and automatic receipts."
+        },
+        {
+          "title": "Paid VIP tier",
+          "body": "GHS 1,000+, capped at 50 places, with 30-minute checkout holds and upgrades for Standard guests."
+        },
+        {
+          "title": "Digital QR passes",
+          "body": "A personal pass with table, seat and VIP perks, issued only once payment is confirmed."
+        },
+        {
+          "title": "Door check-in",
+          "body": "Scan or search from a phone, take payment at the door, and catch duplicates. Attendance updates live."
+        },
+        {
+          "title": "Seating and tracking links",
+          "body": "Tables with auto-fill seating, plus tracking links and QR codes for each campaign."
+        },
+        {
+          "title": "Guest emails",
+          "body": "Email groups or hand-picked guests from templates, with consent checked at send time."
+        },
+        {
+          "title": "Content editor",
+          "body": "Organisers edit website text, sponsors and VIP perks themselves, with history and undo."
+        },
+        {
+          "title": "Live donations",
+          "body": "New Paystack payments appear in the dashboard automatically, with no refresh."
+        }
+      ],
+      "security": [
+        "Personal data encrypted with AES-256-GCM, with keyed hashes for searching without decrypting.",
+        "Staff roles enforced in every API route and by database access rules; admins must use an authenticator app to sign in.",
+        "Contact details masked by default, every reveal recorded in an audit log, staff screens watermarked, and idle sessions signed out automatically.",
+        "Strict security headers (CSP and HSTS) and rate limiting on public forms.",
+        "291 automated tests; type checks and a full build must pass before every release."
+      ],
+      "outcomes": [
+        {
+          "value": "Live",
+          "label": "at prettyinpink.org.uk"
+        },
+        {
+          "value": "291",
+          "label": "automated tests"
+        },
+        {
+          "value": "5",
+          "label": "staff roles with least-privilege access"
+        }
+      ],
+      "stack": [
+        "Next.js 15",
+        "TypeScript",
+        "Tailwind CSS",
+        "Supabase (Postgres, Auth, Realtime)",
+        "Paystack",
+        "Resend",
+        "Upstash",
+        "Vercel",
+        "Cloudflare",
+        "Vitest",
+        "Playwright"
+      ],
+      "accent": "#B0245F",
+      "live": "https://prettyinpink.org.uk",
+      "caseStudyPdf": "/brochures/pretty-in-pink-case-study.pdf",
+      "carouselPdf": "/brochures/pretty-in-pink-carousel.pdf",
+      "cover": "/brochures/pretty-in-pink-cover.png",
+      "thumbnail": "/brochures/pretty-in-pink-slide-01.png",
+      "gallery": [
+        {
+          "src": "/brochures/pretty-in-pink-home.png",
+          "caption": "Home page: hero with the event flyer",
+          "device": "desktop"
+        },
+        {
+          "src": "/brochures/pretty-in-pink-home-phone.png",
+          "caption": "Mobile home page",
+          "device": "phone"
+        },
+        {
+          "src": "/brochures/pretty-in-pink-pass.png",
+          "caption": "Digital QR pass (sample data)",
+          "device": "phone"
+        },
+        {
+          "src": "/brochures/pretty-in-pink-admin-guests.png",
+          "caption": "Admin: guest list with masked contact details (sample data)",
+          "device": "desktop"
+        },
+        {
+          "src": "/brochures/pretty-in-pink-checkin-ok.png",
+          "caption": "Door check-in result (sample data)",
+          "device": "phone"
+        },
+        {
+          "src": "/brochures/pretty-in-pink-floating.png",
+          "caption": "Floating Register and Contribute buttons",
+          "device": "phone"
+        },
+        {
+          "src": "/brochures/pretty-in-pink-reg-step4.png",
+          "caption": "Registration: contribution step",
+          "device": "desktop"
+        }
+      ]
+    },
+    {
+      "slug": "trading-desk",
+      "title": "Trading Desk",
+      "subtitle": "Rule-based trading signals, live position tracking and AI review for gold, GBP/USD and Bitcoin",
+      "client": "Personal project",
+      "year": "2026",
+      "summary": "A private trading desk for gold, GBP/USD and Bitcoin that runs six rule-based strategies around the clock on a dedicated Mac. It sends the trader Telegram alerts with exact levels and the next action to take, and tracks every open position from a live price stream. Every strategy, and every change to one, is tested on three years of history against fixed pass-or-fail checks before it goes live. AI models give an advisory second opinion that the code checks against the facts before anyone sees it.",
+      "role": "Product, strategy research, full-stack build, operations",
+      "duration": "Jun – Oct 2026",
+      "problem": [
+        "Trades are placed by hand, so every alert has to say exactly what to do and when, or the trade is missed.",
+        "Signals arrived late: a scan every five minutes and a data cache out of step with the market meant entries landed 7.1 minutes after the price bar that triggered them, on average.",
+        "A free market-data plan of 800 requests a day had to serve the charts, the strategy scans and the research.",
+        "Most trading ideas look convincing on a chart and fall apart when tested on data that wasn't used to choose them."
+      ],
+      "solution": [
+        "Alerts in two stages: a warning while a setup is forming, then the entry with its levels and a one-line instruction.",
+        "Scans run every minute and fire within seconds of a price bar closing, and open positions are checked against a live price stream every 2.5 seconds.",
+        "One live price feed builds every chart timeframe once. The charts and strategies read the same data, and the paid provider only fills in history and repairs gaps.",
+        "A fixed research method for every change: fit the rule on the first half of three years, confirm it on the second half, and require statistical evidence before it ships."
+      ],
+      "features": [
+        {
+          "title": "Six strategy books, three markets",
+          "body": "Range breakouts, a Bollinger band ride, a Donchian channel and a swing system on gold, GBP/USD and Bitcoin."
+        },
+        {
+          "title": "Live price stream and shared bar store",
+          "body": "WebSocket ticks build 1-minute to 4-hour bars once. Bars the feed didn't fully watch are never used."
+        },
+        {
+          "title": "Two-stage Telegram alerts",
+          "body": "A warning while a setup forms, then the entry with its levels and next action, then every exit."
+        },
+        {
+          "title": "AI second opinion, checked in code",
+          "body": "Gemini reviews each signal; code checks its verdict against computed facts. Ollama and FinBERT back it up."
+        },
+        {
+          "title": "Position tracking at stream speed",
+          "body": "Stops, targets and trailing stops checked every 2.5 seconds from an in-memory position cache."
+        },
+        {
+          "title": "Trading console",
+          "body": "Built from a Claude Design spec: next action per position, live multi-timeframe chart, phone layout."
+        },
+        {
+          "title": "Official economic calendar",
+          "body": "Release times from the Fed, BLS, BEA and Bank of England. Fed dates parsed by code, changes flagged."
+        },
+        {
+          "title": "Research pipeline with fixed pass marks",
+          "body": "Held-out data, resampling, cost sweeps and best-trade checks. A weekly job proposes, never applies."
+        },
+        {
+          "title": "Built to keep running through outages",
+          "body": "Falls back to live-feed bars when the provider is down; a daily budget protects the data allowance."
+        }
+      ],
+      "security": [
+        "API keys stay on the server and are never logged.",
+        "Endpoints accept only the traded markets and validate every price and timestamp.",
+        "AI never places or sizes a trade: its verdicts are advisory and checked in code.",
+        "Calendar pages come from a fixed list of official sites and are treated as data, never instructions.",
+        "Six checks run every morning to prove the live code still matches the tested rules."
+      ],
+      "outcomes": [
+        {
+          "value": "6",
+          "label": "strategy books across three markets, each tested on three years of history"
+        },
+        {
+          "value": "2.5s",
+          "label": "between position checks, driven by a live price stream"
+        },
+        {
+          "value": "6",
+          "label": "daily automated checks that the live strategy code still matches the tested rules"
+        },
+        {
+          "value": "8",
+          "label": "background services, running 24 hours a day, five days a week on a dedicated Mac"
+        }
+      ],
+      "stack": [
+        "Next.js 16",
+        "React 19",
+        "TypeScript",
+        "Prisma 7",
+        "Neon Postgres",
+        "Zod",
+        "Recharts",
+        "Tailwind CSS 4",
+        "Gemini API",
+        "Ollama",
+        "FinBERT",
+        "Finnhub WebSocket",
+        "Telegram Bot API",
+        "macOS launchd"
+      ],
+      "accent": "#8A6A12",
+      "live": null,
+      "caseStudyPdf": "/brochures/trading-desk-case-study.pdf",
+      "carouselPdf": "/brochures/trading-desk-carousel.pdf",
+      "cover": "/brochures/trading-desk-cover.png",
+      "thumbnail": "/brochures/trading-desk-slide-01.png",
+      "gallery": [
+        {
+          "src": "/brochures/trading-desk-console.png",
+          "caption": "Console: open positions with their next action, above the live chart (sample data)",
+          "device": "desktop"
+        },
+        {
+          "src": "/brochures/trading-desk-chart.png",
+          "caption": "A position's entry, stop and targets drawn on the live GBP/USD chart (sample data)",
+          "device": "desktop"
+        },
+        {
+          "src": "/brochures/trading-desk-chart-gold.png",
+          "caption": "Gold on 5-minute bars with swing, liquidity and structure overlays (sample data)",
+          "device": "desktop"
+        },
+        {
+          "src": "/brochures/trading-desk-ai.png",
+          "caption": "Setup warnings and the AI's second opinion on each entry, with reasons for and against (sample data)",
+          "device": "desktop"
+        },
+        {
+          "src": "/brochures/trading-desk-phone.png",
+          "caption": "The same console on a phone (sample data)",
+          "device": "phone"
+        }
+      ]
+    },
+    {
+      "slug": "apsu16",
+      "title": "APSU '16",
+      "subtitle": "Alumni platform with a private member portal, event payments and moderated community content",
+      "client": "APSU '16",
+      "year": "2026",
+      "summary": "A home for the Class of 2016 of St. Augustine's College, Cape Coast. The public site tells the year group's story and gives every member a house to belong to. Behind it, a private portal lets verified members find each other, RSVP to events, pay dues and post updates. The association's executives run the site themselves: they edit content, review submissions and track who is attending.",
+      "role": "Design, full-stack build, security, deployment",
+      "duration": "2026 – ongoing",
+      "problem": [
+        "More than 250 members needed a private place to find each other, but the member list had to stay hidden from the public.",
+        "Events needed RSVPs where members choose options and pay straight away through the association's existing payment drive.",
+        "Executives needed to review honours nominations and member updates without asking a developer.",
+        "Most members use phones on slow mobile connections, so every page had to be light and fast."
+      ],
+      "solution": [
+        "A public site and a separate member portal. Members sign in with a one-time code, and access rules in the database protect member data.",
+        "Event packages with selectable options. The server calculates the total and sends the member to the existing GroupFund payment drive.",
+        "Admin panels for nominations, class notes, events and site content, with in-app notifications and an audit log.",
+        "A redesign that cut the JavaScript on every public page, plus a full security hardening pass."
+      ],
+      "features": [
+        {
+          "title": "Private member portal",
+          "body": "A member directory, events, dues, profile and messages in one place, designed for phones first."
+        },
+        {
+          "title": "Event RSVPs with options",
+          "body": "Members tick the items they want and see the total. The server sets the price, then hands off to GroupFund to pay."
+        },
+        {
+          "title": "Honours and class notes",
+          "body": "Members nominate brothers for awards and post updates. Executives review both in the app and members are notified."
+        },
+        {
+          "title": "Self-service content",
+          "body": "Admins change the site's text and images themselves. Every admin action goes into an audit log."
+        },
+        {
+          "title": "Opening animation",
+          "body": "Particles burst like fireworks and form the wordmark. Plays once per visitor, with a reduced-motion fallback."
+        },
+        {
+          "title": "Ten houses",
+          "body": "Each school house has its own page, so every member belongs to a smaller group within the year."
+        },
+        {
+          "title": "Passwordless sign-in",
+          "body": "Members sign in with a one-time code sent by email. The membership check runs on the server, with rate limiting."
+        },
+        {
+          "title": "Attendee lists",
+          "body": "Admins see who confirmed and what each person chose, then export the list to a spreadsheet."
+        }
+      ],
+      "security": [
+        "Row-level security on member data. Sensitive database functions run on the server only.",
+        "Payment amounts calculated on the server. The browser only sends which package was chosen.",
+        "Membership lookups moved into a rate-limited server route, to stop scripted email checks.",
+        "Uploads checked by file contents, not file name. Spreadsheet exports guarded against formula injection.",
+        "Security headers (CSP, HSTS, no framing) and error monitoring with Sentry."
+      ],
+      "outcomes": [
+        {
+          "value": "Live",
+          "label": "at apsu16.com"
+        },
+        {
+          "value": "263",
+          "label": "verified members"
+        },
+        {
+          "value": "22%",
+          "label": "less JavaScript per public page (352 kB down to at most 275 kB)"
+        },
+        {
+          "value": "10",
+          "label": "house pages, one for each school house"
+        }
+      ],
+      "stack": [
+        "Next.js 15",
+        "React 19",
+        "TypeScript",
+        "Supabase (Postgres, Auth, Storage, Realtime)",
+        "GSAP",
+        "HTML Canvas",
+        "GroupFund (mobile money)",
+        "Sentry",
+        "Vercel"
+      ],
+      "accent": "#14502E",
+      "live": "https://apsu16.com",
+      "caseStudyPdf": "/brochures/apsu16-case-study.pdf",
+      "carouselPdf": "/brochures/apsu16-carousel.pdf",
+      "cover": "/brochures/apsu16-cover.png",
+      "thumbnail": "/brochures/apsu16-slide-01.png",
+      "gallery": [
+        {
+          "src": "/brochures/apsu16-houses.png",
+          "caption": "Houses: every member belongs to one of ten (member photos blurred)",
+          "device": "desktop"
+        },
+        {
+          "src": "/brochures/apsu16-projects.png",
+          "caption": "Projects and upcoming events",
+          "device": "desktop"
+        },
+        {
+          "src": "/brochures/apsu16-honours-tall.png",
+          "caption": "Honours: the year group's awards and nominations",
+          "device": "desktop"
+        },
+        {
+          "src": "/brochures/apsu16-intro-phone.png",
+          "caption": "Opening animation: particles form the wordmark",
+          "device": "phone"
+        },
+        {
+          "src": "/brochures/apsu16-signin-phone.png",
+          "caption": "Member sign-in with a one-time code",
+          "device": "phone"
+        }
+      ]
+    }
+  ]
+}
