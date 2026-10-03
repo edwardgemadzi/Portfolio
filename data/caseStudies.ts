@@ -160,7 +160,7 @@ export const caseStudies: CaseStudy[] = [
       'RSVP management with duplicate prevention and confirmation flow built in',
       'Private guest photo portal with Supabase Storage and magic-link authentication',
     ],
-    stack: ['Astro 6', 'React 19', 'TypeScript', 'Supabase', 'Supabase Auth', 'Supabase Storage', 'Vercel'],
+    stack: ['Astro 6', 'React 19', 'TypeScript', 'Supabase', 'Supabase Auth', 'Supabase Storage', 'Paystack', 'Vercel'],
     links: { live: '#', repo: null },
     status: 'launched',
   },

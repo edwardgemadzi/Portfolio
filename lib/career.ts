@@ -118,7 +118,7 @@ export const skillGroups: { label: string; items: string[] }[] = [
   { label: 'Product engineering', items: ['TypeScript', 'React', 'Next.js', 'Node.js', 'tRPC', 'REST APIs', 'Tailwind CSS'] },
   { label: 'Data', items: ['PostgreSQL', 'Supabase', 'Neon', 'Prisma', 'MongoDB', 'Data modelling'] },
   { label: 'Security', items: ['Role-based access', 'Row-level security', 'Encryption at rest', 'Audit logging', 'CSP and HSTS', 'Rate limiting'] },
-  { label: 'Payments', items: ['Paystack', 'Signed webhooks', 'Double-entry accounting'] },
+  { label: 'Payments', items: ['Paystack', 'Hubtel', 'Signed webhooks', 'Double-entry accounting'] },
   { label: 'Delivery', items: ['Vercel', 'GitHub', 'Playwright', 'Vitest', 'Sentry'] },
   { label: 'Banking and operations', items: ['FLEXCUBE', 'SWIFT', 'Western Union', 'IBPS', 'Microsoft Power Automate'] },
 ]

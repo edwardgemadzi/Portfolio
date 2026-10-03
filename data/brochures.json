@@ -8,7 +8,7 @@
       "subtitle": "Double-entry finance platform for an alumni association",
       "client": "Alumni association, Ghana",
       "year": "2026",
-      "summary": "A finance platform for an alumni association that collects dues, runs merchandise and event ventures, and answers to its members for every cedi. Payments arrive by bank transfer, mobile money and online checkout; the committee records and verifies them, and the system posts each one into a real double-entry general ledger. Treasurers get a trial balance, balance sheet and income statement that agree, instead of a spreadsheet nobody can reconcile.",
+      "summary": "A finance platform for an alumni association that collects dues, runs merchandise and event ventures, and answers to its members for every cedi. Payments arrive by bank transfer, mobile money and online checkout through Hubtel; the committee records and verifies them, and the system posts each one into a real double-entry general ledger. Treasurers get a trial balance, balance sheet and income statement that agree, instead of a spreadsheet nobody can reconcile.",
       "role": "Design, full-stack build, accounting model, security, deployment",
       "duration": "Apr – Sep 2026",
       "problem": [
@@ -93,6 +93,7 @@
         "Prisma",
         "Neon Postgres",
         "Clerk",
+        "Hubtel",
         "Tailwind CSS",
         "Zod",
         "Recharts",
@@ -423,7 +424,7 @@
       ],
       "solution": [
         "A public site and a separate member portal. Members sign in with a one-time code, and access rules in the database protect member data.",
-        "Event packages with selectable options. The server calculates the total and sends the member to the existing GroupFund payment drive.",
+        "Event packages with selectable options. The server calculates the total and sends the payment to the existing GroupFund drive over its API, where it is paid through Hubtel.",
         "Admin panels for nominations, class notes, events and site content, with in-app notifications and an audit log.",
         "A redesign that cut the JavaScript on every public page, plus a full security hardening pass."
       ],
@@ -434,7 +435,7 @@
         },
         {
           "title": "Event RSVPs with options",
-          "body": "Members tick the items they want and see the total. The server sets the price, then hands off to GroupFund to pay."
+          "body": "Members tick the items they want and see the total. The server sets the price, then passes it to GroupFund's API to pay through Hubtel."
         },
         {
           "title": "Honours and class notes",
@@ -493,7 +494,7 @@
         "Supabase (Postgres, Auth, Storage, Realtime)",
         "GSAP",
         "HTML Canvas",
-        "GroupFund (mobile money)",
+        "GroupFund API (Hubtel)",
         "Sentry",
         "Vercel"
       ],
